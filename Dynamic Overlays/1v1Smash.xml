@@ -1,0 +1,15 @@
+<!DOCTYPE StreamControlLayout>
+<layout width="530" height="135">
+	<label x="10" y="10" width="80" height="16">Player Info</label>
+	<label x="150" y="10" width="80" height="16">Score</label>
+	<label x="210" y="10" width="80" height="16">Game / Round</label>
+	<line x="10" y="29" width="670" height="3" />
+	<lineEdit id="pName1" x="10" y="35" width="120" height="20" dataSet="SSBM.csv">Player 1</lineEdit>
+	<lineEdit id="pName2" x="10" y="65" width="120" height="20" dataSet="SSBM.csv">Player 2</lineEdit>
+	<lineEdit id="gName" x="210" y="35" width="120" height="45" dataSet="SSBM.csv">Game / Round</lineEdit>
+	<spinBox id="pScore1" x="150" y="35" width="40" height="22" maximum="999" />
+	<spinBox id="pScore2" x="150" y="65" width="40" height="22" maximum="999" />
+	<button type="reset" x="350" y="35" width="80" height="52" tooltip="Clear All fields" id="clear1" reset="pName1,pName2,pScore1,pScore2,gName">Clear</button>
+	<button type="swap" x="440" y="35" width="80" height="52" tooltip="Swap the Scores" id="swap" swapSet1="pName1,pScore1,pTwitter1" swapSet2="pName2,pScore2,pTwitter2">Swap</button>
+	
+</layout>

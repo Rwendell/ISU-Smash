@@ -1,0 +1,82 @@
+@font-face {
+	font-family: 'OswaldRegular';
+    src: url('Oswald-Regular.eot');
+    src: url('Oswald-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OswaldBold';
+    src: url('Oswald-Bold.eot');
+    src: url('Oswald-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	margin:0px;
+	background-color: rgba(0, 0, 0, 0);
+	font-family: 'OswaldRegular';
+	color:#f7a503;
+}
+
+#board {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1920px;
+	height:1080px;
+	background-image:url('../images/SmashOverlay.png');
+}
+
+#pName1 {
+	position: absolute;
+	left: 80px;
+	top: 1025px;
+	width: 350px;
+	font-size:30px;
+	font-family: 'OswaldRegular';
+	text-align:left;	
+	color:#f7a503;
+}
+#pName2 {
+	position: absolute;
+	left: 1007.404px;
+	top: 1025px;
+	width: 350px;
+	font-size:30px;
+	font-family: 'OswaldRegular';
+	text-align:right;
+	color:#f7a503;
+}
+
+#gName {
+	position:absolute;
+	left:420px;
+	top: 15px;
+	width:600px;
+	font-size:30px;
+	font-family: 'OswaldRegular';
+	text-align:center;
+	color:#f7a503;
+}
+
+#pScore1 {
+	position:absolute;
+	left:0px;
+	top: 990px;
+	width:70px;
+	font-size:60px;
+	font-family: 'OswaldBold';
+	text-align:center;
+	
+}
+#pScore2 {
+	position:absolute;
+	left:1367.404px;
+	top: 990px;
+	width:70px;
+	font-size:60px;
+	font-family: 'OswaldBold';
+	text-align:center;
+}

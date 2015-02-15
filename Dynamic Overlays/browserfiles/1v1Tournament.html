@@ -1,0 +1,320 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/1v1Tournament.css" type="text/css" charset="utf-8">
+	<script src="js/jquery-2.0.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jstween-1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/countries.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+			
+			var timestampOld;
+			var timestamp;
+			var pName1;
+			var pScore1;
+			var pName2;
+			var pScore2;
+			var pTwitter1;
+			var pTwitter2;
+			var gName;
+			
+			var xmlDoc;
+		
+			var xhr = new XMLHttpRequest();
+		
+			var animating = false;
+			var doUpdate = false;
+			
+			function init() {
+
+				xhr.overrideMimeType('text/xml');
+				
+				var timeout = this.window.setInterval(function() {
+					pollHandler();
+				}, 250);
+			
+				$('#pName1').html('');
+				$('#pScore1').html('');
+				$('#pName2').html('');
+				$('#pScore2').html('');
+				$('#pTwitter1').html('');
+				$('#pTwitter2').html('');
+				$('#gName').html('');
+				$('#board').tween({
+				   top:{
+					  start: '-100',
+					  stop: '0',
+					  units: 'px',
+					  time: 0,
+					  duration: 0.8,
+					  effect:'easeOut'
+				   }
+				});
+				
+				$.play();
+			}
+			
+			function pollHandler()
+			{
+			  loadData();
+			  if (timestamp != timestampOld) {
+				  doUpdate = true;
+			  }
+			  if (!animating && doUpdate) {
+				  updateBoard();
+			  }
+			}
+			
+			function loadData() {
+				xhr.open('GET', 'streamcontrol.xml');
+				xhr.send();
+				xhr.onreadystatechange = function(){
+						xmlDoc = xhr.responseXML;
+						
+						pName1 = getValueFromTag(xmlDoc,'pName1');
+						pName2 = getValueFromTag(xmlDoc,'pName2');
+						pScore1 = getValueFromTag(xmlDoc,'pScore1');
+						pScore2 = getValueFromTag(xmlDoc,'pScore2');
+						gName = getValueFromTag(xmlDoc, 'gName');
+						pTwitter1 = getValueFromTag(xmlDoc,'pTwitter1');
+						pTwitter2 = getValueFromTag(xmlDoc,'pTwitter2');		
+						timestampOld = timestamp;
+						timestamp = getValueFromTag(xmlDoc,'timestamp');
+						
+				}
+			}
+			
+			function updateBoard() {
+				if ($('#pName1').html() != pName1) {
+					animating = true;
+					$('#pName1').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pName1').html(pName1);
+						}
+					});
+					
+					$('#pName1').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				
+				if ($('#pName2').html() != pName2) {
+					animating = true;
+					$('#pName2').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pName2').html(pName2);
+						}
+					});
+					
+					$('#pName2').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				if ($('#gName').html() != gName) {
+					animating = true;
+					$('#gName').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#gName').html(gName);
+						}
+					});
+					
+					$('#gName').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				
+				if ($('#pScore1').html() != pScore1) {
+					animating = true;
+					$('#pScore1').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pScore1').html(pScore1);
+						}
+					});
+					
+					$('#pScore1').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				
+				if ($('#pScore2').html() != pScore2) {
+					animating = true;
+					$('#pScore2').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pScore2').html(pScore2);
+						}
+					});
+					
+					$('#pScore2').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+
+				
+				if ($('#pTwitter1').html() != pTwitter1) {
+					animating = true;
+					$('#pTwitter1').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pTwitter1').html(pTwitter1);
+						}
+					});
+					
+					$('#pTwitter1').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				
+				if ($('#pTwitter2').html() != pTwitter2) {
+					animating = true;
+					$('#pTwitter2').tween({
+						opacity: {
+						  start: 100,
+						  stop: 0,
+						  time: 0,
+						  duration: 0.5,
+						  effect: 'easeIn'
+						},
+						onStop: function(){
+							$('#pTwitter2').html(pTwitter2);
+						}
+					});
+					
+					$('#pTwitter2').tween({
+						opacity: {
+						  start: 0,
+						  stop: 100,
+						  time: 0.5,
+						  duration: 0.5,
+						  effect: 'easeOut'
+						},
+						onStop: function(){
+							animating = false;
+						}
+					});
+				}
+				
+				
+				$.play();
+				
+				doUpdate = false;
+			}
+			
+			function getValueFromTag (xmlDoc,tag) {
+				if (xmlDoc.getElementsByTagName(tag).length != 0 ) {
+					if (xmlDoc.getElementsByTagName(tag)[0].childNodes.length == 0) {
+							return '';
+						} else {
+							return xmlDoc.getElementsByTagName(tag)[0].childNodes[0].nodeValue;
+					}
+				} else {
+					return '';
+				}
+			}
+			
+	</script>
+</head>
+<body onLoad="init()">
+	<div id="board">
+		<div id="pName1">Player 1</div>
+		<div id="pScore1">99</div>
+		<div id="pName2">Player 2</div>
+		<div id="pScore2">99</div>
+		<div id="pTwitter1">Test</div>
+        <div id="pTwitter2">Test2</div>
+        <div id="gName">Game / Round</div>
+	</div>
+</body>
+</html>
